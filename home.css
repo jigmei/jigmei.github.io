@@ -1,0 +1,55 @@
+body {
+    padding: 20px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#tabs .nav-bar li {
+    display: inline-block;
+    margin: 0 5px;
+    padding: 8px 20px;
+    color: #797979;
+    border-radius: 10px;
+    box-shadow: 5px 5px 2px #888888;
+}
+
+.active {
+    background-color: #cefadb;
+    color: #15419d;
+}
+
+#mainView {
+    padding: 20px;
+    border-radius: 10px;
+    word-wrap: break-word;
+}
+
+#mapView {
+    position: relative;
+    top: 160px;
+    min-height: 300px;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+
+.img {
+    max-width: 50px;
+    max-height: 50px
+}
+
+.even-class {
+    background-color: #fafafa;
+}
+
+tr th {
+    padding-right: 5px;
+    white-space: nowrap;
+}
+
+th, td{
+    vertical-align: top;
+}
