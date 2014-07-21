@@ -76,3 +76,18 @@ tr th {
 th, td{
     vertical-align: top;
 }
+/*For testing on desktop*/
+@media(min-width: 1200px){
+    .navbar.jd-nav-fixed{
+       background-color: #0ea9fa;
+    }
+
+}
+
+/*For testing on cellphone*/
+@media(max-width: 480px){
+    .navbar.jd-nav-fixed{
+        background-color: #26a0fa;
+    }
+
+}
