@@ -2,14 +2,14 @@
 
     <h3>Hourly Forecast</h3>
     <p><b>Summary：</b>{{jsonData.hourly.summary}}
-        <img class="img" ng-src="icon/{{jsonData.hourly.icon}}.png"></p>
+        <img class="img" ng-src="images/{{jsonData.hourly.icon}}.png"></p>
     <hr>
     <div ng-repeat="data in jsonData.hourly.data" ng-class-even="'even-class'">
         <table>
             <tr>
                 <th>Time：</th>
                 <td>{{data.time *1000|date:"MMM d - hh a"}}
-                    <img class="img" ng-src="icon/{{data.icon}}.png"></td>
+                    <img class="img" ng-src="images/{{data.icon}}.png"></td>
             </tr>
             <tr>
                 <th>Summary：</th>
