@@ -1,25 +1,47 @@
 body {
+
     padding: 20px;
 }
-
+#home .content{
+    margin-top:60px;
+}
+.navbar.jd-nav-fixed{
+    padding:0 30px;
+    color:#ffffff;
+}
 ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
+.navbar-toggle.jd-button{
+    border-color:#48c3fa;
+}
+.icon-bar{
+    background-color: #48c3fa ;
+}
+.navbar-brand.jd-title{
+    font-size: 30px;
+}
 
-#tabs .nav-bar li {
+.navbar li {
     display: inline-block;
     margin: 0 5px;
-    padding: 8px 20px;
     color: #797979;
     border-radius: 10px;
     box-shadow: 5px 5px 2px #888888;
 }
 
+.navbar li:hover a.jd-background {
+   background-color: #d8f3ff;
+    border-radius: 10px;
+}
+
 .active {
-    background-color: #cefadb;
-    color: #15419d;
+    background-color: #48c3fa;
+}
+.active a{
+    color: #ffffff;
 }
 
 #mainView {
@@ -34,6 +56,7 @@ ul {
     min-height: 300px;
     border-radius: 10px;
     margin-right: 20px;
+
 }
 
 .img {
@@ -42,7 +65,7 @@ ul {
 }
 
 .even-class {
-    background-color: #fafafa;
+    background-color: #f7f7f7;
 }
 
 tr th {

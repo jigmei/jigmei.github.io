@@ -1,0 +1,64 @@
+<!-- hourly information -->
+
+    <h3>Hourly Forecast</h3>
+    <p><b>Summary：</b>{{jsonData.hourly.summary}}
+        <img class="img" ng-src="icon/{{jsonData.hourly.icon}}.png"></p>
+    <hr>
+    <div ng-repeat="data in jsonData.hourly.data" ng-class-even="'even-class'">
+        <table>
+            <tr>
+                <th>Time：</th>
+                <td>{{data.time *1000|date:"MMM d - hh a"}}
+                    <img class="img" ng-src="icon/{{data.icon}}.png"></td>
+            </tr>
+            <tr>
+                <th>Summary：</th>
+                <td>{{data.summary}}</td>
+            </tr>
+            <tr>
+                <th>Precip Intensity：</th>
+                <td>{{data.precipIntensity}}</td>
+            </tr>
+            <tr>
+                <th>Precip Probability：</th>
+                <td>{{data.precipProbability}}</td>
+            </tr>
+            <tr>
+                <th>Temperature：</th>
+                <td>{{data.temperature}}</td>
+            </tr>
+            <tr>
+                <th>Dew Point:</th>
+                <td>{{data.dewPoint}}</td>
+            </tr>
+            <tr>
+                <th>Humidity：</th>
+                <td>{{data.humidity}}</td>
+            </tr>
+            <tr>
+                <th>Wind Speed：</th>
+                <td>{{data.windSpeed}}</td>
+            </tr>
+            <tr>
+                <th>Wind Bearing:</th>
+                <td>{{data.windBearing}}</td>
+            </tr>
+            <tr>
+                <th>Visibility：</th>
+                <td>{{data.visibility}}</td>
+            </tr>
+            <tr>
+                <th>Cloud Cover：</th>
+                <td>{{data.cloudCover}}</td>
+            </tr>
+            <tr>
+                <th>Pressure:</th>
+                <td>{{data.pressure}}</td>
+            </tr>
+            <tr>
+                <th>Ozone：</th>
+                <td>{{data.ozone}}</td>
+            </tr>
+        </table>
+        <br>
+    </div>

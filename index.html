@@ -2,314 +2,36 @@
 <html>
 <head>
     <meta charset="utf-8"/>
-    <title>Jigmei's Test Page</title>
-
-    <link rel="stylesheet" href="home.css"/>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"/>
+    <title>Test Page</title>
+    <link rel="stylesheet" href="styles/home.css"/>
+    <link rel="stylesheet" href="lib/bootstrap-3.1.1-dist/css/bootstrap.css"/>
 </head>
 
-<body ng-app="myApp">
-<div ng-controller="AppController">
-    <div id="tabs">
-        <ul class="nav-bar">
-            <li ng-repeat="tab in tabs"
-                ng-class="{active:isActiveTab(tab.url)}"
-                ng-click="onClickTab(tab)">
-                {{tab.title}}
-            </li>
-        </ul>
-    </div>
+<body ng-app="myApp" id="home">
+
+<nav class="navbar navbar-inverse navbar-fixed-top jd-nav-fixed"><h2>Jigmei's Test Page</h2></nav>
+
+<div class="content" ng-controller="AppController">
+    <div ng-include="'partial/navbar.html'"></div>
 
     <div class="row">
         <div id="mainView" class="col-md-7 col-sm-7">
-            <div class="mainViewContent" ng-include="currentTab"></div>
+            <div ui-view></div> <!--this is the place i can inject the view for my application -->
         </div>
         <div id="mapView" class="col-md-4 col-sm-4">
         </div>
     </div>
 
-    <!-- currently information -->
-    <script type="text/ng-template" id="currently.tpl.html">
-        <h3>{{jsonData.currently.time *1000|date:"medium"}}</h3>
-        <p><b>Summary：</b>{{jsonData.currently.summary}}
-            <img class="img" ng-src="/Icon/{{jsonData.currently.icon}}.png"></p>
-        <hr>
-        <table>
-            <tr>
-                <th>Nearest Storm Distance:</th>
-                <td>{{jsonData.currently.nearestStormDistance}}</td>
-            </tr>
-            <tr>
-                <th>Nearest Storm Bearing:</th>
-                <td> {{jsonData.currently.nearestStormBearing}}</td>
-            </tr>
-            <tr>
-                <th>Precip Intensity:</th>
-                <td>{{jsonData.currently.precipIntensity}}</td>
-            </tr>
-            <tr>
-                <th>Precip Probability:</th>
-                <td> {{jsonData.currently.precipProbability}}</td>
-            </tr>
-            <tr>
-                <th>Temperature:</th>
-                <td> {{jsonData.currently.temperature}}</td>
-            </tr>
-            <tr>
-                <th>Apparent Temperature:</th>
-                <td> {{jsonData.currently.apparentTemperature}}</td>
-            </tr>
-            <tr>
-                <th>Dew Point:</th>
-                <td> {{jsonData.currently.dewPoint}}</td>
-            </tr>
-            <tr>
-                <th>Humidity:</th>
-                <td> {{jsonData.currently.humidity}}</td>
-            </tr>
-            <tr>
-                <th>Wind Speed:</th>
-                <td> {{jsonData.currently.windSpeed}}</td>
-            </tr>
-            <tr>
-                <th>Wind Bearing:</th>
-                <td> {{jsonData.currently.windBearing}}</td>
-            </tr>
-            <tr>
-                <th>Visibility:</th>
-                <td> {{jsonData.currently.visibility}}</td>
-            </tr>
-            <tr>
-                <th>CloudCover:</th>
-                <td> {{jsonData.currently.cloudCover}}</td>
-            </tr>
-            <tr>
-                <th>Pressure:</th>
-                <td> {{jsonData.currently.pressure}}</td>
-            </tr>
-            <tr>
-                <th>Ozone:</th>
-                <td> {{jsonData.currently.ozone}}</td>
-            </tr>
-        </table>
-    </script>
-
-    <!-- minutely information -->
-    <script type="text/ng-template" id="minutely.tpl.html">
-        <h3>Minutely Forecast</h3>
-        <p><b>Summary：</b>{{jsonData.minutely.summary}}
-            <img class="img" ng-src="/Icon/{{jsonData.minutely.icon}}.png">
-        </p>
-
-        <hr>
-        <div ng-repeat="data in jsonData.minutely.data" ng-class-even="'even-class'">
-            <table>
-                <tr>
-                    <th>Time:</th>
-                    <td>{{data.time *1000|date:"hh:mm:ss a"}}</td>
-                </tr>
-                <tr>
-                    <th>Precip Intensity:</th>
-                    <td> &nbsp{{data.precipIntensity}}</td>
-                </tr>
-                <tr>
-                    <th>Precip Probability:</th>
-                    <td> &nbsp{{data.precipProbability}}</td>
-                </tr>
-            </table>
-            <br>
-
-        </div>
-    </script>
-
-
-    <!-- hourly information -->
-    <script type="text/ng-template" id="hourly.tpl.html">
-        <h3>Hourly Forecast</h3>
-        <p><b>Summary：</b>{{jsonData.hourly.summary}}
-            <img class="img" ng-src="/Icon/{{jsonData.hourly.icon}}.png"></p>
-        <hr>
-        <div ng-repeat="data in jsonData.hourly.data" ng-class-even="'even-class'">
-            <table>
-                <tr>
-                    <th>Time：</th>
-                    <td>{{data.time *1000|date:"MMM d - hh a"}}
-                        <img class="img" ng-src="/Icon/{{data.icon}}.png"></td>
-                </tr>
-                <tr>
-                    <th>Summary：</th>
-                    <td>{{data.summary}}</td>
-                </tr>
-                <tr>
-                    <th>Precip Intensity：</th>
-                    <td>{{data.precipIntensity}}</td>
-                </tr>
-                <tr>
-                    <th>Precip Probability：</th>
-                    <td>{{data.precipProbability}}</td>
-                </tr>
-                <tr>
-                    <th>Temperature：</th>
-                    <td>{{data.temperature}}</td>
-                </tr>
-                <tr>
-                    <th>Dew Point:</th>
-                    <td>{{data.dewPoint}}</td>
-                </tr>
-                <tr>
-                    <th>Humidity：</th>
-                    <td>{{data.humidity}}</td>
-                </tr>
-                <tr>
-                    <th>Wind Speed：</th>
-                    <td>{{data.windSpeed}}</td>
-                </tr>
-                <tr>
-                    <th>Wind Bearing:</th>
-                    <td>{{data.windBearing}}</td>
-                </tr>
-                <tr>
-                    <th>Visibility：</th>
-                    <td>{{data.visibility}}</td>
-                </tr>
-                <tr>
-                    <th>Cloud Cover：</th>
-                    <td>{{data.cloudCover}}</td>
-                </tr>
-                <tr>
-                    <th>Pressure:</th>
-                    <td>{{data.pressure}}</td>
-                </tr>
-                <tr>
-                    <th>Ozone：</th>
-                    <td>{{data.ozone}}</td>
-                </tr>
-            </table>
-            <br>
-        </div>
-    </script>
-
-
-    <!-- daily information -->
-    <script type="text/ng-template" id="daily.tpl.html">
-        <h3>Daily Forecast</h3>
-        <p><b>Summary：</b>{{jsonData.daily.summary}}
-            <img class="img" ng-src="/Icon/{{jsonData.daily.icon}}.png"></p>
-        <hr>
-        <div ng-repeat="data in jsonData.daily.data" ng-class-even="'even-class'">
-            <table>
-                <tr>
-                    <th>Time:</th>
-                    <td> &nbsp{{data.time *1000|date:"fullDate"}}
-                        <img class="img" ng-src="/Icon/{{data.icon}}.png"></td>
-                </tr>
-                <tr>
-                    <th>Summary：</th>
-                    <td> &nbsp{{data.summary}}</td>
-                </tr>
-                <tr>
-                    <th>Sunrise Time：</th>
-                    <td> &nbsp{{data.sunriseTime*1000|date:"hh:mm:ss a"}}</td>
-                </tr>
-                <tr>
-                    <th>Sunset Time：</th>
-                    <td> &nbsp{{data.sunsetTime*1000|date:"hh:mm:ss a"}}</td>
-                </tr>
-                <tr>
-                    <th>Moon Phase：</th>
-                    <td> &nbsp{{data.moonPhase}}</td>
-                </tr>
-                <tr>
-                    <th>Precip Intensity:</th>
-                    <td> &nbsp{{data.precipIntensity}}</td>
-                </tr>
-                <tr>
-                    <th>Precip IntensityMax：</th>
-                    <td> &nbsp{{data.precipIntensityMax}}</td>
-                </tr>
-                <tr>
-                    <th>Precip IntensityMaxTime：</th>
-                    <td> &nbsp{{data.precipIntensityMaxTime*1000||"Unknown"|date:"hh:mm:ss a"}}</td>
-                </tr>
-                <tr>
-                    <th>Precip Probability:</th>
-                    <td> &nbsp{{data.precipProbability}}</td>
-                </tr>
-                <tr>
-                    <th>Temperature Minimum:</th>
-                    <td> &nbsp{{data.temperatureMin}}</td>
-                </tr>
-                <tr>
-                    <th>Temperature Minimium Time:</th>
-                    <td> &nbsp{{data.temperatureMinTime*1000|date:"hh:mm:ss a"}}</td>
-                </tr>
-                <tr>
-                    <th>Temperature Maximum:</th>
-                    <td> &nbsp{{data.temperatureMax}}</td>
-                </tr>
-                <tr>
-                    <th>Temperature Maximum Time:</th>
-                    <td> &nbsp{{data.temperatureMaxTime*1000|date:"hh:mm:ss a"}}</td>
-                </tr>
-                <tr>
-                    <th>Apparent Temperature Minimum:</th>
-                    <td> &nbsp{{data.apparentTemperatureMin}}</td>
-                </tr>
-                <tr>
-                    <th>Apparent Temperature Minimum Time:</th>
-                    <td> &nbsp{{data.apparentTemperatureMinTime*1000|date:"hh:mm:ss a"}}</td>
-                </tr>
-                <tr>
-                    <th>Apparent Temperature Maximum:</th>
-                    <td> &nbsp{{data.apparentTemperatureMax}}</td>
-                </tr>
-                <tr>
-                    <th>Apparent Temperature Maximum Time:</th>
-                    <td> &nbsp{{data.apparentTemperatureMaxTime*1000|date:"hh:mm:ss a"}}</td>
-                </tr>
-                <tr>
-                    <th>Dew Point:</th>
-                    <td> &nbsp{{data.dewPoint}}</td>
-                </tr>
-                <tr>
-                    <th>Humidity:</th>
-                    <td> &nbsp{{data.humidity}}</td>
-                </tr>
-                <tr>
-                    <th>Wind Speed:</th>
-                    <td> &nbsp{{data.windSpeed}}</td>
-                </tr>
-                <tr>
-                    <th>Wind Bearing:</th>
-                    <td> &nbsp{{data.windBearing}}</td>
-                </tr>
-                <tr>
-                    <th>Visibility:</th>
-                    <td> &nbsp{{data.visibility || "Unknown"}}</td>
-                </tr>
-                <tr>
-                    <th>Cloud Cover:</th>
-                    <td> &nbsp{{data.cloudCover}}</td>
-                </tr>
-                <tr>
-                    <th>Pressure:</th>
-                    <td> &nbsp{{data.pressure}}</td>
-                </tr>
-                <tr>
-                    <th>Ozone:</th>
-                    <td> &nbsp{{data.ozone}}</td>
-                </tr>
-            </table>
-            <br>
-        </div>
-    </script>
-
 </div>
-</body>
 
-<script src='http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.js'></script>
+<script src='lib/jquery_1.7.2.js'></script>
 <script src="https://maps.google.com/maps/api/js?sensor=false"></script>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
-<script type="text/javascript" src="home.js"></script>
 
+<script type="text/javascript" src="lib/AngularJS/angular_1.2.6.js"></script>
+<script type="text/javascript" src="lib/angular-ui-router.js"></script>
+
+<script type="text/javascript" src="lib/bootstrap-3.1.1-dist/js/bootstrap.js"></script>
+
+<script type="text/javascript" src="scripts/home.js"></script>
+</body>
 </html>

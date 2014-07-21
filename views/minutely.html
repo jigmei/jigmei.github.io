@@ -1,0 +1,26 @@
+<!-- minutely information -->
+
+    <h3>Minutely Forecast</h3>
+    <p><b>Summary：</b>{{jsonData.minutely.summary}}
+        <img class="img" ng-src="icon/{{jsonData.minutely.icon}}.png">
+    </p>
+
+    <hr>
+    <div ng-repeat="data in jsonData.minutely.data" ng-class-even="'even-class'">
+        <table>
+            <tr>
+                <th>Time:</th>
+                <td>{{data.time *1000|date:"hh:mm:ss a"}}</td>
+            </tr>
+            <tr>
+                <th>Precip Intensity:</th>
+                <td> &nbsp{{data.precipIntensity}}</td>
+            </tr>
+            <tr>
+                <th>Precip Probability:</th>
+                <td> &nbsp{{data.precipProbability}}</td>
+            </tr>
+        </table>
+        <br>
+
+    </div>
